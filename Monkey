@@ -1,0 +1,28 @@
+contract MonkeyNFT is ERC721, ERC721Enumerable, Ownable {
+
+    using SafeMath for uint256;
+    uint public constant maxPurchase = 10;
+    uint256 public constant MAX_MONKEYS = 10000;
+
+    uint256 private _monkeyPrice = 80000000000000000; //0.08 ETH
+    string private baseURI;
+    bool public saleIsActive = true;
+
+    constructor() ERC721("The Monkey NFT", "MNK") {
+    }
+    
+    function _beforeTokenTransfer(address from, address to, uint256 tokenId)
+        internal
+        override(ERC721, ERC721Enumerable)
+    {
+        super._beforeTokenTransfer(from, to, tokenId);
+    }
+    
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721, ERC721Enumerable)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
+    }
